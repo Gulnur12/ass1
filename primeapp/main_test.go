@@ -74,6 +74,18 @@ func Test_checkNumbers(t *testing.T) {
 	}
 }
 
+func TestReadUserInput(t *testing.T) {
+  doneChan := make(chan bool)
+
+  var stdin bytes.Buffer
+
+  stdin.Write([]byte("1\nq\n"))
+
+  go readUserInput(&stdin, doneChan)
+  <-doneChan
+  close(doneChan)
+}
+
 func Test_isPrime(t *testing.T) {
 	primeTests := []struct {
 		name     string
