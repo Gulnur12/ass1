@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"io"
 	"os"
 	"strings"
@@ -75,15 +76,15 @@ func Test_checkNumbers(t *testing.T) {
 }
 
 func TestReadUserInput(t *testing.T) {
-  doneChan := make(chan bool)
+	doneChan := make(chan bool)
 
-  var stdin bytes.Buffer
+	var stdin bytes.Buffer
 
-  stdin.Write([]byte("1\nq\n"))
+	stdin.Write([]byte("1\nq\n"))
 
-  go readUserInput(&stdin, doneChan)
-  <-doneChan
-  close(doneChan)
+	go readUserInput(&stdin, doneChan)
+	<-doneChan
+	close(doneChan)
 }
 
 func Test_isPrime(t *testing.T) {
